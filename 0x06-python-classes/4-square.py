@@ -10,7 +10,7 @@ class Square:
         """Initialize a new square.
 
         Args:
-        size (int): The size of the new square.
+             size (int): The size of the new square.
         """
         self.size = size
     @property
