@@ -1,75 +1,86 @@
-The ``1-my_list`` module
-============================
+The ``MyList`` module
+==========================
 
-Using ``1-mylist``
+Using ``MyList``
 ---------------------
 
-Import function from module:
-    >>> MyList = __import__('1-my_list').MyList
+First import ``MyList`` from the ``MyList`` module:
 
-Correct Class Type test:
-    >>> ml = MyList()
-    >>> type(ml) == MyList
-    True
+	>>> MyList = __import__('1-my_list').MyList
 
-Correct Instance test:
-    >>> ml = MyList()
-    >>> isinstance(ml, list)
-    True
+Now use it:
 
-print_sorted method is an instance method:
-    >>> type(MyList.__dict__['print_sorted'])
-    <class 'function'>
+	>>> my_list = MyList([1, 2, 4, 3, 5])
+	>>> print(my_list)
+	[1, 2, 4, 3, 5]
+	>>> my_list.append(6)
+	>>> my_list.print_sorted()
+	[1, 2, 3, 4, 5, 6]
+	>>> print(my_list)
+	[1, 2, 4, 3, 5, 6]
 
-print_sorted method called via class with no args:
-    >>> ml.__class__.print_sorted()
-    Traceback (most recent call last):
-    TypeError: print_sorted() missing 1 required positional argument: 'self'
+	>>> my_list = MyList()
+	>>> type(my_list)
+	<class '1-my_list.MyList'>
 
-print_sorted method called with 1 arg:
-    >>> ml.print_sorted([4, 2, 5])
-    Traceback (most recent call last):
-    TypeError: print_sorted() takes 1 positional argument but 2 were given
+	>>> issubclass(MyList, list)
+	True
 
-print_sorted method called with 2 args:
-    >>> ml.print_sorted([4, 2, 5], 1)
-    Traceback (most recent call last):
-    TypeError: print_sorted() takes 1 positional argument but 3 were given
+	>>> 'print_sorted' in dir(MyList)
+	True
 
-Empty list test:
-    >>> ml = MyList()
-    >>> ml.print_sorted()
-    []
+	>>> my_list = MyList([4, 2, 3, 1, 5])
+	>>> print(my_list)
+	[4, 2, 3, 1, 5]
 
-Normal list test:
-    >>> ml = MyList([2, 10, 1])
-    >>> ml.print_sorted()
-    [1, 2, 10]
+	>>> my_list = MyList([4, 2, 3, 1, 5])
+	>>> my_list.print_sorted()
+	[1, 2, 3, 4, 5]
 
-Normal list test 2:
-    >>> ml = MyList([1, 4, 2, 3, 5])
-    >>> ml.print_sorted()
-    [1, 2, 3, 4, 5]
+	>>> my_list = MyList([-4, 2, 3, 1, 5])
+	>>> my_list.print_sorted()
+	[-4, 1, 2, 3, 5]
 
-Negative ints list test:
-    >>> ml = MyList([-1000, -98, -232565, 0, -23423434, -123])
-    >>> ml.print_sorted()
-    [-23423434, -232565, -1000, -123, -98, 0]
+	>>> my_list = MyList([1, 2, 3, 4, 5])
+	>>> my_list.print_sorted()
+	[1, 2, 3, 4, 5]
 
-Original list unchanged:
-    >>> ml = MyList([2, 10, 1, -10, 20, 100, 0])
-    >>> ml.print_sorted()
-    [-10, 0, 1, 2, 10, 20, 100]
-    >>> ml
-    [2, 10, 1, -10, 20, 100, 0]
+	>>> my_list = MyList([1])
+	>>> my_list.print_sorted()
+	[1]
 
-List already in order:
-    >>> ml = MyList([-10, 0, 1, 2, 10, 20, 100])
-    >>> ml.print_sorted()
-    [-10, 0, 1, 2, 10, 20, 100]
+	>>> my_list = MyList()
+	>>> my_list.print_sorted()
+	[]
 
-Test append:
-    >>> ml = MyList()
-    >>> ml.append(10)
-    >>> ml
-    [10]
+	>>> my_list = MyList([])
+	>>> my_list.print_sorted()
+	[]
+
+	>>> my_list = MyList(["c", "d", "a", "e", "b"])
+	>>> my_list.print_sorted()
+	['a', 'b', 'c', 'd', 'e']
+
+	>>> my_list = MyList([1.1, 3.3, 4.4, 2.2, 5.5])
+	>>> my_list.print_sorted()
+	[1.1, 2.2, 3.3, 4.4, 5.5]
+
+	>>> my_list = MyList([-1, -3, -4, -2, -5])
+	>>> my_list.print_sorted()
+	[-5, -4, -3, -2, -1]
+
+	>>> my_list = MyList(1)
+	Traceback (most recent call last):
+	...
+	TypeError: 'int' object is not iterable
+
+	>>> my_list = MyList([1, "a"])
+	>>> my_list.print_sorted()
+	Traceback (most recent call last):
+	...
+	TypeError: unorderable types: str() < int()
+
+	>>> my_list.print_sorted([3, 1, 2])
+	Traceback (most recent call last):
+	...
+	TypeError: print_sorted() takes 1 positional argument but 2 were given
