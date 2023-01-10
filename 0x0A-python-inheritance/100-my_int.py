@@ -1,14 +1,14 @@
 #!/usr/bin/python3
-''' Module: 1-my_list
-'''
+"""Defines a class MyInt that inherits from int."""
 
 
-class MyList(list):
-    ''' Represents a MyList
-    '''
+class MyInt(int):
+    """Invert int operators == and !=."""
 
-    def print_sorted(self):
-        '''
-        prints the list, but sorted
-        '''
-        print(sorted(self))
+    def __eq__(self, value):
+        """Override == opeartor with != behavior."""
+        return self.real != value
+
+    def __ne__(self, value):
+        """Override != operator with == behavior."""
+        return self.real == value
